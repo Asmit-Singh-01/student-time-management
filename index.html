@@ -1,62 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Student Dash</title>
+    <title>Pro Student OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Dashboard Header -->
-        <header class="dash-header">
-            <div class="header-main">
-                <h1>⚡ StudentDash <span class="badge-pro">Pro</span></h1>
-                <div id="live-clock" class="live-clock">00:00:00</div>
+
+    <!-- 1. AUTH SCREEN OVERLAY -->
+    <div id="auth-screen" class="auth-overlay">
+        <div class="auth-card">
+            <h2>🔐 Pro Student OS</h2>
+            <p>Access your offline dashboard securely</p>
+            <div class="input-stack">
+                <input type="text" id="auth-username" placeholder="Enter Username">
+                <input type="password" id="auth-password" placeholder="Create / Enter Password">
+                <button id="auth-btn" class="btn-primary">Login / Register</button>
             </div>
-            <button id="noti-btn" class="btn-noti">🔔 Setup Notifications</button>
+            <p class="auth-note">Note: App runs completely offline on your device!</p>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app-content" class="app-container hidden">
+        
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-top">
+                <span class="user-profile-badge">👤 <span id="user-display-name">Student</span></span>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="btn-icon">🌓</button>
+                    <button id="logout-btn" class="btn-danger-sm">Exit</button>
+                </div>
+            </div>
+            <div class="header-main">
+                <div class="clock-box">
+                    <span id="indian-clock">12:00:00 AM</span>
+                    <span id="live-date">Thursday, July 16</span>
+                </div>
+                <div class="productivity-meter">
+                    <span class="meter-label">Productivity Score</span>
+                    <div class="meter-ring">
+                        <span id="prod-score">0%</span>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <!-- Productivity Stats Row -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-num" id="stat-total">0</span>
-                <span class="stat-label">Total Tasks</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-num" id="stat-pending" style="color: var(--accent-color);">0</span>
-                <span class="stat-label">Pending</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-num" id="stat-completed" style="color: var(--success-color);">0</span>
-                <span class="stat-label">Completed</span>
-            </div>
-        </div>
-
-        <!-- Unified Task Creator Card -->
-        <section class="card creator-card">
-            <h2>📝 Create New Task</h2>
-            <div class="input-stack">
-                <input type="text" id="todo-input" placeholder="What are you studying or working on?">
-                
-                <div class="time-option-row">
-                    <label for="todo-time">⏰ Set Deadline? (Optional):</label>
-                    <input type="time" id="todo-time">
+        <!-- MAIN TABS CONTAINER -->
+        <main class="tabs-content">
+            
+            <!-- TAB 1: DASHBOARD -->
+            <section id="tab-dashboard" class="tab-panel active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-num" id="stat-total">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" id="stat-pending">0</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" id="stat-streak">0 🔥</span>
+                        <span class="stat-label">Habit Streak</span>
+                    </div>
                 </div>
-                
-                <button id="add-todo-btn" class="btn-primary">Add Task to Matrix</button>
-            </div>
-        </section>
 
-        <!-- Task Matrix Section -->
-        <section class="card task-section">
-            <div class="section-header">
-                <h2>🎯 Active Task Matrix</h2>
-            </div>
-            <ul id="todo-list" class="todo-list">
-                <!-- Advanced tasks will render here -->
-            </ul>
-        </section>
+                <!-- Goals Section -->
+                <div class="card">
+                    <h3>🎯 Smart Goals (Daily Limit)</h3>
+                    <div class="goal-progress-container">
+                        <div class="goal-bar"><div id="goal-fill" style="width: 0%"></div></div>
+                        <span id="goal-text">0/3 Daily Tasks Achieved</span>
+                    </div>
+                </div>
+
+                <!-- Weekly Study Overview & Graph -->
+                <div class="card">
+                    <h3>📊 Study Hours Trend (Weekly)</h3>
+                    <div class="chart-container">
+                        <div class="bar" style="--height: 40%"><span>M</span></div>
+                        <div class="bar" style="--height: 65%"><span>T</span></div>
+                        <div class="bar" style="--height: 80%"><span>W</span></div>
+                        <div class="bar" style="--height: 50%"><span>T</span></div>
+                        <div class="bar" style="--height: 95%"><span>F</span></div>
+                        <div class="bar" style="--height: 30%"><span>S</span></div>
+                        <div class="bar" style="--height: 10%"><span>S</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: TASK & MATRIX -->
+            <section id="tab-tasks" class="tab-panel">
+                <div class="card">
+                    <h3>📝 Add Task / Assignment</h3>
+                    <div class="input-stack">
+                        <input type="text" id="task-title" placeholder="What's the task or assignment?">
+                        <div class="row">
+                            <select id="task-priority">
+                                <option value="Low">🟢 Low Priority</option>
+                                <option value="Medium" selected>🟡 Medium Priority</option>
+                                <option value="High">🔴 High Priority</option>
+                            </select>
+                            <input type="time" id="task-deadline">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="task-subject" placeholder="Subject (e.g. Physics)">
+                            <select id="task-type">
+                                <option value="task">General Task</option>
+                                <option value="assignment">Assignment</option>
+                                <option value="exam">Exam Event</option>
+                            </select>
+                        </div>
+                        <button id="btn-add-task" class="btn-primary">Deploy to Schedule</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="filter-bar">
+                        <input type="text" id="search-bar" placeholder="🔍 Search tasks...">
+                        <select id="filter-priority">
+                            <option value="All">All Priorities</option>
+                            <option value="High">High Only</option>
+                        </select>
+                    </div>
+                    <ul id="task-matrix" class="task-list">
+                        <!-- Tasks inject here -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- TAB 3: FOCUS & HABITS -->
+            <section id="tab-focus" class="tab-panel">
+                <div class="card text-center">
+                    <h3>⏱️ Pomodoro Engine</h3>
+                    <div class="pomodoro-timer" id="pomo-display">25:00</div>
+                    <div class="row-center">
+                        <button id="pomo-start" class="btn-success">Start Focus</button>
+                        <button id="pomo-reset" class="btn-secondary">Reset</button>
+                    </div>
+                    <p class="text-muted mt-10">Lock focus for 25 minutes. No distractions.</p>
+                </div>
+
+                <div class="card">
+                    <h3>⚡ Habit Builder</h3>
+                    <div class="habit-grid">
+                        <div class="habit-item" onclick="toggleHabit('wake')">
+                            <span class="habit-icon">🌅</span>
+                            <span class="habit-name">Wake Up Early</span>
+                        </div>
+                        <div class="habit-item" onclick="toggleHabit('exercise')">
+                            <span class="habit-icon">💪</span>
+                            <span class="habit-name">Exercise</span>
+                        </div>
+                        <div class="habit-item" onclick="toggleHabit('read')">
+                            <span class="habit-icon">📚</span>
+                            <span class="habit-name">Revision/Reading</span>
+                        </div>
+                        <div class="habit-item" onclick="toggleHabit('water')">
+                            <span class="habit-icon">💧</span>
+                            <span class="habit-name">Water Intake</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: ACADEMICS -->
+            <section id="tab-academics" class="tab-panel">
+                <div class="card">
+                    <h3>📈 Attendance Tracker</h3>
+                    <div class="attendance-input-group">
+                        <input type="text" id="att-subject" placeholder="Subject (e.g. Maths)">
+                        <button id="btn-add-subject" class="btn-primary">+</button>
+                    </div>
+                    <ul id="attendance-list" class="attendance-list">
+                        <!-- Attendance items inject here -->
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🗓️ Interactive Calendar Block</h3>
+                    <div id="calendar-view" class="calendar-grid">
+                        <!-- Generated days -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: TOOLS & PROFILE -->
+            <section id="tab-tools" class="tab-panel">
+                <div class="card">
+                    <h3>📓 Markdown Notes</h3>
+                    <div class="input-stack">
+                        <input type="text" id="note-title" placeholder="Note Title...">
+                        <textarea id="note-body" placeholder="Write down topics or upload base64 file data..."></textarea>
+                        <button id="btn-save-note" class="btn-primary">Save Notes</button>
+                    </div>
+                    <div id="notes-shelf" class="notes-shelf">
+                        <!-- Saved notes -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📥 Data Export Hub</h3>
+                    <p class="text-muted" style="margin-bottom: 12px;">Back up your offline schedule report as a localized sheet.</p>
+                    <button id="btn-export-pdf" class="btn-primary" style="width: 100%;">📄 Export Report to System PDF</button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- NATIVE BOTTOM NAVIGATION BAR -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="tab-dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Dash</span>
+            </button>
+            <button class="nav-item" data-tab="tab-tasks">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-text">Tasks</span>
+            </button>
+            <button class="nav-item" data-tab="tab-focus">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Focus</span>
+            </button>
+            <button class="nav-item" data-tab="tab-academics">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Class</span>
+            </button>
+            <button class="nav-item" data-tab="tab-tools">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Tools</span>
+            </button>
+        </nav>
+
     </div>
 
     <script src="app.js"></script>
