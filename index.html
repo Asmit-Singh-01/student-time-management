@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Time Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>⚡ Student Dash</h1>
+            <p>Manage your time like a pro</p>
+        </header>
+
+        <!-- Notification Permission Button -->
+        <button id="noti-btn" class="btn-secondary">🔔 Enable Notifications</button>
+
+        <!-- Alarm Section -->
+        <section class="card alarm-section">
+            <h2>⏰ Set Alarm / Reminder</h2>
+            <div class="alarm-inputs">
+                <input type="time" id="alarm-time">
+                <input type="text" id="alarm-label" placeholder="Reminder label (e.g., Physics Class)">
+                <button id="set-alarm-btn" class="btn-primary">Set Alarm</button>
+            </div>
+            <div id="active-alarms" class="active-alarms">
+                <!-- Active alarms will appear here -->
+            </div>
+        </section>
+
+        <!-- To-Do List Section -->
+        <section class="card todo-section">
+            <h2>📝 Tasks / To-Do</h2>
+            <div class="todo-input-group">
+                <input type="text" id="todo-input" placeholder="Add a new task...">
+                <button id="add-todo-btn" class="btn-primary">+</button>
+            </div>
+            <ul id="todo-list" class="todo-list">
+                <!-- Tasks will appear here -->
+            </ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
