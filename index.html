@@ -3,41 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Time Management</title>
+    <title>Pro Student Dash</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
-        <header>
-            <h1>⚡ Student Dash</h1>
-            <p>Manage your time like a pro</p>
+        <!-- Dashboard Header -->
+        <header class="dash-header">
+            <div class="header-main">
+                <h1>⚡ StudentDash <span class="badge-pro">Pro</span></h1>
+                <div id="live-clock" class="live-clock">00:00:00</div>
+            </div>
+            <button id="noti-btn" class="btn-noti">🔔 Setup Notifications</button>
         </header>
 
-        <!-- Notification Permission Button -->
-        <button id="noti-btn" class="btn-secondary">🔔 Enable Notifications</button>
-
-        <!-- Alarm Section -->
-        <section class="card alarm-section">
-            <h2>⏰ Set Alarm / Reminder</h2>
-            <div class="alarm-inputs">
-                <input type="time" id="alarm-time">
-                <input type="text" id="alarm-label" placeholder="Reminder label (e.g., Physics Class)">
-                <button id="set-alarm-btn" class="btn-primary">Set Alarm</button>
+        <!-- Productivity Stats Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-num" id="stat-total">0</span>
+                <span class="stat-label">Total Tasks</span>
             </div>
-            <div id="active-alarms" class="active-alarms">
-                <!-- Active alarms will appear here -->
+            <div class="stat-card">
+                <span class="stat-num" id="stat-pending" style="color: var(--accent-color);">0</span>
+                <span class="stat-label">Pending</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num" id="stat-completed" style="color: var(--success-color);">0</span>
+                <span class="stat-label">Completed</span>
+            </div>
+        </div>
+
+        <!-- Unified Task Creator Card -->
+        <section class="card creator-card">
+            <h2>📝 Create New Task</h2>
+            <div class="input-stack">
+                <input type="text" id="todo-input" placeholder="What are you studying or working on?">
+                
+                <div class="time-option-row">
+                    <label for="todo-time">⏰ Set Deadline? (Optional):</label>
+                    <input type="time" id="todo-time">
+                </div>
+                
+                <button id="add-todo-btn" class="btn-primary">Add Task to Matrix</button>
             </div>
         </section>
 
-        <!-- To-Do List Section -->
-        <section class="card todo-section">
-            <h2>📝 Tasks / To-Do</h2>
-            <div class="todo-input-group">
-                <input type="text" id="todo-input" placeholder="Add a new task...">
-                <button id="add-todo-btn" class="btn-primary">+</button>
+        <!-- Task Matrix Section -->
+        <section class="card task-section">
+            <div class="section-header">
+                <h2>🎯 Active Task Matrix</h2>
             </div>
             <ul id="todo-list" class="todo-list">
-                <!-- Tasks will appear here -->
+                <!-- Advanced tasks will render here -->
             </ul>
         </section>
     </div>
