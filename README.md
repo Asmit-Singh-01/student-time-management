@@ -1,16 +1,24 @@
 <h1 align="center">
   <br>
-  <img src="https://raw.githubusercontent.com/Asmit-Singh-01/student-time-management/main/logo.png" alt="Student Time Management Logo" width="180">
+  <!-- Agar aapne logo .png/.jpg file name change karke upload kiya hai, to use yahan link karein -->
+  <!-- example: `![Student Time Management Logo](./logo.png)` -->
+  <!-- Abhi ke liye logo path ko ignore kar dete hain jab tak file sahi na ho -->
   <br>
-  <b>🎓 Student-Time-Management</b>
-  <br>
-  <sub>Mobile-Optimized Academic Task Scheduling & Focus Engine</sub>
+  🎓 Student-Time-Management
   <br>
 </h1>
 
 <p align="center">
+  <sub>Mobile-Optimized Academic Task Scheduling & Focus Engine</sub>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/STATUS-ACTIVE%20DEVELOPMENT-46a2da?style=for-the-badge&labelColor=555555" alt="Status">
+</p>
+<p align="center">
   <img src="https://img.shields.io/badge/TECH-HTML5%20%7C%20CSS3%20%7C%20JAVASCRIPT-007ACC?style=for-the-badge&labelColor=333333" alt="Tech Stack">
+</p>
+<p align="center">
   <img src="https://img.shields.io/badge/ENGINE-VANILLA%20JS%20%2F%20NO%20FRAMEWORK-e34c26?style=for-the-badge&labelColor=444444" alt="Engine">
   <img src="https://img.shields.io/badge/BUILD-PASSING-44cc11?style=for-the-badge&labelColor=555555" alt="Build Status">
 </p>
@@ -63,8 +71,8 @@ This project strictly avoids external frameworks (React, Angular, Vue) or heavy 
 
 * 📱 **Mobile-First Dynamic UI**: Native touch-friendly interaction targets (min 48x48px).
 * 📝 **Intelligent Task Lifecycle Management**: Categorization by Subject, Priority (High/Medium/Low), and Due Date.
-* ⏳ **Pomodoro & Time-Blocking**: Customizable study/break interval timer (25 min focus / 5 min short break).
-* 📊 **Local Data Persistence**: Visual progress bar & completion metrics calculating daily output efficiency.
+* ⏳ **Pomodoro & Time-Blocking Module**: Customizable study/break interval timer (25 min focus / 5 min short break).
+* 📊 **Local Data Persistence & Analytics**: Visual progress bar & completion metrics calculating daily output efficiency.
 
 ---
 
@@ -73,8 +81,8 @@ This project strictly avoids external frameworks (React, Angular, Vue) or heavy 
 ```text
 student-time-management/
 │
-├── logo.png          # App Logo Icon
 ├── index.html        # Semantic HTML5 application scaffold & modal layouts
 ├── style.css         # Modular CSS custom properties, grid layouts & animations
 ├── app.js            # Main application state machine, storage & DOM logic
+├── logo.pdf          # Application Logo Icon (Upload in proper image format for display)
 └── README.md         # Comprehensive project documentation & operational guide
