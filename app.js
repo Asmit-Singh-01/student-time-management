@@ -115,8 +115,31 @@ const themeToggle = document.getElementById('theme-toggle');
 themeToggle.addEventListener('click', () => {
     const root = document.documentElement;
     const isDark = root.getAttribute('data-theme') === 'dark';
+    if(isDark)
+        localStorage.setItem("theme","light");
+    else
+        localStorage.setItem("theme","dark");
+        
     root.setAttribute('data-theme', isDark ? 'light' : 'dark');
 });
+
+
+function themeColor(){
+    const root = document.documentElement;
+   if(!localStorage.getItem("theme")){
+localStorage.setItem("theme","dark");
+    return;
+   }else{
+    if(localStorage.getItem("theme")==="dark")
+        root.setAttribute('data-theme','dark');
+ else
+    root.setAttribute('data-theme','light');
+   }
+    
+
+}
+
+themeColor();
 
 // --- 5. POMODORO COUNTER ---
 let pomoTime = 1500;
